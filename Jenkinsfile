@@ -60,6 +60,13 @@ pipeline {
               }
             }
         }
+
+        stage('Scan Dependencies with Owasp') {
+            steps {
+                dependencyCheck additionalArguments: '--scan ./', odcInstallation: 'DC'
+                dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
+            }
+        }
     }
 
     post {
