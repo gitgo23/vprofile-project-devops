@@ -20,6 +20,12 @@ pipeline {
                 git branch: 'vp-rem', url: 'https://github.com/gitgo23/vprofile-project-devops.git'
             }
         }
+
+        stage('Build with Maven') {
+            steps {
+                sh "mvn clean package"
+            }
+        }
     }
 
     post {
