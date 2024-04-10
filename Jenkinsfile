@@ -63,7 +63,7 @@ pipeline {
 
         stage('Scan Dependencies with Owasp') {
             steps {
-                dependencyCheck additionalArguments: '--scan ./', odcInstallation: 'DC'
+                dependencyCheck additionalArguments: '', odcInstallation: 'DC'
                 dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
             }
         }
