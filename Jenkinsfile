@@ -27,9 +27,10 @@ pipeline {
             }
         }
 
+        /*
         stage('Code Analysis with Sonarqube') {
             steps {
-                withSonarQubeEnv(credentialsId: 'SONAR-TK') {
+                withSonarQubeEnv('sonarqube') {
                     sh '''${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=vprofile \
                         -Dsonar.projectName=vprofile-repo \
                         -Dsonar.projectVersion=1.0 \
@@ -38,6 +39,16 @@ pipeline {
                         -Dsonar.junit.reportsPath=target/surefire-reports/ \
                         -Dsonar.jacoco.reportsPath=target/jacoco.exec \
                         -Dsonar.java.checkstyle.reportPaths=target/checkstyle-result.xml'''
+                }
+            }
+        }*/
+
+        stage('Scan with Sonarqube') {
+            steps {
+                script {
+                    withSonarQubeEnv(credentialsId: 'SONAR-TK') {
+                     sh "${ScannerHome}/bin/sonar-scanner -Dsonar.projectKey=vprofile -Dsonar.projectName=ecommerce-success -Dsonar.java.binaries=." 
+                         }
                 }
             }
         }
