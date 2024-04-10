@@ -1,12 +1,43 @@
+COLOR_MAP = [
+    'SUCCESS': 'good',
+    'FAILURE': 'danger',
+]
+
+pipeline {
+    agent any
+
+    tools {
+        maven "Maven-3.9.6"
+    }
+
+    environment {
+        ScannerHome = tool 'Sonar-5'
+    }
+
+    stages {
+        stage('Git Clone') {
+            steps {
+                git branch: 'vp-rem', url: 'https://github.com/gitgo23/vprofile-project-devops.git'
+            }
+        }
+    }
+}
+
+
+
+
+
+
+/*
 pipeline {
     
 	agent any
-/*	
+	
 	tools {
         maven "maven3"
 	
     }
-*/	
+	
     environment {
         NEXUS_VERSION = "nexus3"
         NEXUS_PROTOCOL = "http"
@@ -120,3 +151,4 @@ pipeline {
 
 
 }
+*/
